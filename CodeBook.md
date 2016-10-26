@@ -16,6 +16,55 @@ https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Datas
 
 (The official citation is: Davide Anguita, Alessandro Ghio, Luca Oneto, Xavier Parra and Jorge L. Reyes-Ortiz. Human Activity Recognition on Smartphones using a Multiclass Hardware-Friendly Support Vector Machine. International Workshop of Ambient Assisted Living (IWAAL 2012). Vitoria-Gasteiz, Spain. Dec 2012)
 
+## Here is a description of all the variables and their units used in the R script to clean the data, by order of appearance:
+=========================================
+
+dataURL
+	Used to save data from the project website https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip
+
+trainData
+	This is the data initially read in from the Training set ('train/X_train.txt'), then with the labels and subject data added on. This includes the raw feature records with time and frequency domain variables for the 21 subjects (70%) in the Training data. It eventually includes 7352 observations and 563 variables, including 561 features (measurements) and the id variables, Subject and Activity.
+
+trainActivities
+	This is the data read in from the Training labels ('train/y_train.txt'). These are the labels for what each subject
+was doing for each observation, labeled as 1 through 6 (which stands for WALKING, WALKING_UPSTAIRS, WALKING_DOWNSTAIRS, SITTING, STANDING, LAYING)
+
+trainSubjects
+	The data was read in from the Training subjects ('train/subject_train.txt'). This identifies the ID numbers of the subjects who performed the activity for each window sample (21 subjects).
+
+testData
+	This is the data initially read in from the Test set ('test/X_test.txt'), then with the labels and subject data added on. This includes the raw feature records with time and frequency domain variables for the 9 subjects (30%) in the Test data set. It eventually includes 2947 observations and 563 variables, including 561 features (measurements) and the id variables, Subject and Activity.
+
+testActivities
+	This is the data read in from the Test labels ('test/y_test.txt'). These are the labels for what each subject was doing for each observation, labeled as 1 through 6 (which stands for WALKING, WALKING_UPSTAIRS, WALKING_DOWNSTAIRS, SITTING, STANDING, LAYING)
+
+testSubjects
+	The data was read in from the Test subjects ('test/subject_test.txt'). This identifies the ID numbers of the subjects who performed the activity for each window sample (9 subjects).
+
+allData
+	This is the merged data frame from trainData and testData, to include information on all 30 subjects. It includes 10299 observations and 563 variables, or the measurements for the subjects, the subject ID and the activity label (1 through 6).
+
+features
+	This is the data frame of the description of the measurements, or features, read in from 'features.txt'
+
+selectMeanStd
+	This includes the index for the feature names, or variables, that include mean() or std()
+
+meanStdNames
+	This includes the actual names of the features, or variables, which we want to subset: those which include mean() or std()
+
+dataSub
+	This data subset only includes the measurements extracted on the mean and standard deviation for each measurement, as well as the info on Subject and Activity.
+
+ActivityNames
+	This reads in the the conversion document, 'activity_labels.txt', that explains which Activity label corresponds with what actual action (WALKING, WALKING_UPSTAIRS, WALKING_DOWNSTAIRS, SITTING, STANDING, LAYING)
+
+mdata
+	This is the melted data from dataSub with Subject and Activity as the ids.
+
+tidyData
+	This is the melted data cast as Subject + Activity, versus the mean of the rest of the variables, or measurements/features.
+
 
 ## Here is a description of the raw data, including its units:
 =========================================
@@ -75,6 +124,7 @@ Notes on raw data:
 
 * Each feature vector is a row on the original text file.
 
+# NARRATIVE
 
 ## The records were modified for the tidy data assignment in the following way:
 =========================================
